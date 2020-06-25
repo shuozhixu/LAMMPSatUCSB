@@ -8,7 +8,7 @@ As an intern in the Beyerlein group at UC Santa Barbara, you will learn atomisti
 2. Wait for the user account to be approved --- you will receive an email.
 3. [Request an account on Pod.](http://csc.cnsi.ucsb.edu/content/pod-account)
 4. Wait for the Pod account to be approved --- you will receive an email. In what follows, I will assume that your account is `ucsb-intern` and your password is `ucsb-intern-pw`.
-5. To help you use Pod, or any HPC cluster in general, please refer to these webpages:
+5. To use Pod, these webpages may help:
 	- [HPC at UCSB](http://csc.cnsi.ucsb.edu/sites/csc.cnsi.ucsb.edu/files/docs/hpcintro_2018_0.pdf)
 	- [Pod](http://csc.cnsi.ucsb.edu/docs/pod-cluster)
 	- [SLURM](https://slurm.schedmd.com/quickstart.html)
@@ -63,10 +63,19 @@ You also need a software to edit text files on Pod. Again, feel free to use anyt
 
 # LAMMPS
 
-LAMMPS is an open-source software for atomistic simulations. So you first need to understand how atomistic simulations work. Here are some useful references:
+LAMMPS is an open-source software for atomistic simulations. So you first need to understand how atomistic simulations work. There are three main types of atomistic simulation methods
 
-- [Molecular statics and molecular dynamics](https://pls.llnl.gov/people/divisions/physics-division/condensed-matter-science-section/eos-and-materials-theory-group/methods/atomistic-simulation-molecular-statics-and-molecular-dynamics)
+- [Molecular dynamics (MD)](https://en.wikipedia.org/wiki/Molecular_dynamics)
+- Molecular statics (MS)
+- Monte Carlo method, e.g., [kinetic Monte Carlo](https://en.wikipedia.org/wiki/Kinetic_Monte_Carlo)
+
+To learn the basics of MD and MS, please read, respectively, Chapter 9 and Chapter 6 of [this book](https://drive.google.com/file/d/0Bxsx9iwZLpZxS0RENllIRnd2LWc/view?usp=sharing). The Google Drive link is private. To have access, [e-mail me](mailto:shuozhixu@ucsb.edu) from the email address associated with your Google Drive.
+
+And here are more references on MD:
+
 - [Introduction to Molecular Dynamics Simulation](http://2009.igem.org/wiki/images/3/3e/Introduction_to_molecular_Dynamics_Simulation.pdf)
+- [Basic Molecular Dynamics](http://li.mit.edu/Archive/Papers/05/Li05-2.8.pdf)
+- [A Molecular Dynamics Primer](http://cms.sjtu.edu.cn/doc/reading/md/A_Molecular_Dynamics_Primer_(Ercolessi).pdf)
 
 To learn LAMMPS, you may start with [this page](https://lammps.sandia.gov/tutorials.html) and [this page](https://icme.hpc.msstate.edu/mediawiki/index.php/LAMMPS_tutorials).
 
@@ -100,18 +109,18 @@ then hit Return. To check the status of the job, type
 
 `squeue -u ucsb-intern`
 
-the hit Return. You will see two lines. In the first line, there is a term `ST`, which stands for 'status'. If, at the same location of the second line, you see `PD`, the job is pending. Recheck the status later. If you see `R`, the job is running. If you only see one line, the job is finished. This, however, can mean two things:
+then hit Return. You will see two lines. In the first line, there is a term `ST`, which stands for 'status'. If, at the same location of the second line, you see `PD`, the job is pending. Recheck the status later. If you see `R`, the job is running. If you only see one line, the job is finished. This, however, can mean one of the two things:
 
 - The job was finished because of an error. In this case, check these three files: `lmp.out`, `lmp.err`, and `log.lammps`. They provide you information on what caused the error(s). In particular, the last file is the log file of LAMMPS, which would present an error message in the last line. Please refer to [this page](https://lammps.sandia.gov/doc/Errors_messages.html) for the explanation of each error message. Once you figure out what went wrong, fix the problem, and resubmit the job
-- The job was finished successfully. Proceed to the next step.
+- The job was finished successfully. In this case, the file `lmp.err` is empty. Proceed to the next step.
 
-You will find a lot of files in the directory. One file is called `gsfe_ori`, then run
+You will find a lot of files in the directory. One file is called `gsfe_ori`. In the same directory on Pod, type
 
 `sh gsfe_curve.sh`
 
-then hit Return. You will find a new file called `gsfe`. The first and second column of this file, respectively, is the _x_ and _y_ axis of the 'MoNbTi<sub>_A_</sub>' curve in Figure 2(a) of [this paper](http://dx.doi.org/10.1016/j.intermet.2020.106844). Plot `gsfe` and see if you get the same curve.
+then hit Return. You will find a new file called `gsfe`. The first and second columns of this file, respectively, are the _x_ and _y_ axes of the 'MoNbTi<sub>_A_</sub>' curve in Figure 2(a) of [this paper](http://dx.doi.org/10.1016/j.intermet.2020.106844). Plot `gsfe` and see if you get the same curve.
 
-As always, feel free to use any software to plot the curve. Here is [a selected list](https://en.wikipedia.org/wiki/List_of_information_graphics_software). I recommend Gnuplot. There are many tutorials on Gnuplot, e.g., [this one](https://www.usm.uni-muenchen.de/CAST/talks/gnuplot.pdf).
+As usual, feel free to use any software to plot the curve. Here is [a selected list](https://en.wikipedia.org/wiki/List_of_information_graphics_software). I recommend Gnuplot. There are many tutorials on Gnuplot, e.g., [this one](https://www.usm.uni-muenchen.de/CAST/talks/gnuplot.pdf).
 
 Now, go back to the file `lmp.in` and read it. Look up the meaning of each LAMMPS command on [this page](https://lammps.sandia.gov/doc/Commands_all.html).
 
