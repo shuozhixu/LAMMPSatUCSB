@@ -14,6 +14,10 @@ As an intern in the Beyerlein group at UC Santa Barbara, you will learn atomisti
 	- [SLURM](https://slurm.schedmd.com/quickstart.html)
 	- [SLURM at UCSB](https://csc.cnsi.ucsb.edu/docs/slurm-job-scheduler)
 
+# UCSB VPN
+
+To connect to Pod, you need the [UCSB VPN](https://www.it.ucsb.edu/vpn) unless you are using the [campus network](https://www.it.ucsb.edu/wireless-networking).
+
 # FTP Client
 
 You need a file transfer protocol (FTP) client to transfer data between Pod and your own computer. Feel free to use any FTP client. Here is [a selected list](https://en.wikipedia.org/wiki/Comparison_of_FTP_client_software).
@@ -118,7 +122,7 @@ You will find a lot of files in the directory. One file is called `gsfe_ori`. In
 
 `sh gsfe_curve.sh`
 
-then hit Return. You will find a new file called `gsfe`. The first and second columns of this file, respectively, are the _x_ and _y_ axes of the 'MoNbTi<sub>_A_</sub>' curve in Figure 2(a) of [this paper](http://dx.doi.org/10.1016/j.intermet.2020.106844). Plot `gsfe` and see if you get the same curve.
+then hit Return. You will find a new file called `gsfe`. The first and second columns of this file, respectively, are the _x_ and _y_ axes of the 'MoNbTi<sub>_A_</sub>' curve in Figure 2(a) of [this paper](http://dx.doi.org/10.1016/j.intermet.2020.106844). Download `gsfe` to your local computer, plot it, and see if you get the same curve.
 
 As usual, feel free to use any software to plot the curve. Here is [a selected list](https://en.wikipedia.org/wiki/List_of_information_graphics_software). I recommend Gnuplot. There are many tutorials on Gnuplot, e.g., [this one](https://www.usm.uni-muenchen.de/CAST/talks/gnuplot.pdf).
 
@@ -153,4 +157,4 @@ then hit Return. Then submit the job by typing
 
 then hit Return.
 
-After the job is finished, you will find a new file called `strain-stress`. The first and second columns of this file, respectively, are the _yz_ components of the strain tensor and stress tensor of the simulation cell. The strain is unitless and the stress is in units of MPa. Plot it and you will see a point at which the stress-strain relation starts to deviate from linearity. Visualize the dump files in OVITO, and you will see that at that point, the screw dislocation starts to move along the positive _x_ direction. The corresponding stress is then the Peierls stress for the anti-twinning direction on the {112} plane in MoNbTi<sub>_A_</sub>, 1174 MPa.
+After the job is finished, you will find a new file called `strain-stress`. The first and second columns of this file, respectively, are the _yz_ components of the strain tensor and stress tensor of the simulation cell. The strain is unitless and the stress is in units of MPa. Download `strain-stress` to your local computer, plot it, and you will see a point at which the stress-strain relation starts to deviate from linearity. Visualize the dump files in OVITO, and you will see that at that point, the screw dislocation starts to move along the positive _x_ direction. The corresponding stress is then the Peierls stress for the anti-twinning direction on the {112} plane in MoNbTi<sub>_A_</sub>, 1174 MPa.
