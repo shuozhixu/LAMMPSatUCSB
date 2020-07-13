@@ -25,7 +25,6 @@ group tb region tb
 pair_style eam/alloy
 pair_coeff * * MoNbTi_A_atom.eam.alloy A
 
- 
 # ------- timestep & log      -------------------------------------------------
 
 thermo_style custom step temp pxx pyy pzz pxy pxz pyz yz pe
