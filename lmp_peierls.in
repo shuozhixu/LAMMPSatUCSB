@@ -1,0 +1,105 @@
+# ------- initialization      -------------------------------------------------
+units metal
+boundary p s p
+atom_style atomic
+neighbor 2 bin
+
+# ------- create basic geometry      ------------------------------------------------- 
+
+read_data lmp_peierls.data
+change_box all triclinic
+
+variable ymaxt equal bound(all,ymax)+5
+variable ymaxb equal ${ymaxt}-5-4.04
+variable yminb equal bound(all,ymin)-5
+variable ymint equal ${yminb}+5+4.04
+
+region top block INF INF ${ymaxb} ${ymaxt} INF INF
+region bottom block INF INF ${yminb} ${ymint} INF INF
+
+region tb union 2 top bottom
+group tb region tb
+
+# ------- EAM potentials      -------------------------------------------------
+
+pair_style eam/alloy
+pair_coeff * * MoNbTi_A_atom.eam.alloy A
+
+ 
+# ------- timestep & log      -------------------------------------------------
+
+thermo_style custom step temp pxx pyy pzz pxy pxz pyz yz pe
+thermo 100
+
+# ------- energy minimization -------------------------------------------------
+
+variable Etol equal 1.0e-12
+
+min_style cg
+fix 1 all box/relax x 0 z 0 nreset 1
+unfix 1
+
+min_style fire
+minimize  ${Etol} ${Etol} 100000 100000
+
+dump 1 all custom 1 dump.0.load id type x y z
+
+run 0
+undump 1
+
+# ------- MS Load ---------
+
+variable LY equal ly
+
+variable Eel1   equal  0.00
+variable Eel2   equal  0.005
+
+# in units of radian
+variable theta equal 0.
+
+variable Epzy   equal  yz/${LY}
+variable Epxy   equal  xy/${LY}
+
+variable  Lzy1  equal   (${Epzy}+${Eel1})*${LY}*cos(${theta})
+variable  Lzy2  equal   (${Epzy}+${Eel2})*${LY}*cos(${theta})
+
+variable  Lxy1  equal   (${Epxy}+${Eel1})*${LY}*sin(${theta})
+variable  Lxy2  equal   (${Epxy}+${Eel2})*${LY}*sin(${theta})
+
+#undump 1
+
+fix 2 tb setforce 0.0 NULL 0.
+
+variable N equal 5000
+
+label       loop
+variable    a loop ${N}
+
+variable zyTilt equal ${Lzy1}+(${a}-1)/(${N}-1)*(${Lzy2}-${Lzy1})
+
+variable xyTilt equal ${Lxy1}+(${a}-1)/(${N}-1)*(${Lxy2}-${Lxy1})
+
+change_box all yz final ${zyTilt} remap units box
+
+change_box all xy final ${xyTilt} remap units box
+
+min_style cg
+
+minimize  ${Etol} ${Etol} 100000 100000
+
+min_style fire
+minimize  ${Etol} ${Etol} 100000 100000
+
+variable yTilt equal ${zyTilt}*cos(${theta})+${xyTilt}*sin(${theta})
+variable strain equal ${yTilt}/${LY}
+variable PY equal (pyz*cos(${theta})+pxy*sin(${theta}))*0.1
+
+print "${strain} ${PY}" append strain-stress
+
+dump 1 all custom 1 dump.${a}.load id type x y z
+
+run 0
+undump 1
+
+next        a
+jump        lmp_peierls.in loop

@@ -83,27 +83,27 @@ To learn LAMMPS, you may start with [this page](https://lammps.sandia.gov/tutori
 
 LAMMPS is installed on Pod, so you don't need to install it yourself. 
 
-First, on your own computer, download the five files from this github repository. They are
+First, on your own computer, download these five files to a local directory `gsfe` from this github repository. They are
 
-- `lmp.batch`, which is for job submission
-- `lmp.data`, which is the LAMMPS data file
-- `lmp.in`, which is the LAMMPS input file
+- `lmp_gsfe.batch`, which is for job submission
+- `lmp_gsfe.data`, which is the LAMMPS data file
+- `lmp_gsfe.in`, which is the LAMMPS input file
 - `MoNbTi_A_atom.eam.alloy`, which is an interatomic potential file developed by [Wu-Rong Jian](https://github.com/wrj2018/Intermetallics_2020)
 - `gsfe_curve.sh`, which is the post-processing bash script
 
-Then on Pod, create a new directory in your `$HOME`. Say the directory is named `ucsb-intern-test`. The command is
+Then on Pod, create a new directory in your `$HOME`. Say the directory is named `ucsb-intern-gsfe`. The command is
 
-`mkdir ucsb-intern-test`
+`mkdir ucsb-intern-gsfe`
 
-Then upload, via Filezilla, the five files from your local computer to `ucsb-intern-test` on Pod. 
+Then upload, via Filezilla, the five files from your local computer to `ucsb-intern-gsfe` on Pod. 
 
 Then, in your terminal emulator, type
 
-`cd ucsb-intern-test`
+`cd ucsb-intern-gsfe`
 
 then hit Return. Then submit the job by typing
 
-`sbatch lmp.batch`
+`sbatch lmp_gsfe.batch`
 
 then hit Return. To check the status of the job, type
 
@@ -111,8 +111,8 @@ then hit Return. To check the status of the job, type
 
 then hit Return. You will see two lines. In the first line, there is a term `ST`, which stands for 'status'. If, at the same location of the second line, you see `PD`, the job is pending. Recheck the status later. If you see `R`, the job is running. If you only see one line, the job is finished. This, however, can mean one of the two things:
 
-- The job was finished because of an error. In this case, check these three files: `lmp.out`, `lmp.err`, and `log.lammps`. They provide you information on what caused the error(s). In particular, the last file is the log file of LAMMPS, which would present an error message in the last line. Please refer to [this page](https://lammps.sandia.gov/doc/Errors_messages.html) for the explanation of each error message. Once you figure out what went wrong, fix the problem, and resubmit the job
-- The job was finished successfully. In this case, the file `lmp.err` is empty. Proceed to the next step.
+- The job was finished because of an error. In this case, check these three files: `lmp_gsfe.out`, `lmp_gsfe.err`, and `log.lammps`. They provide you information on what caused the error(s). In particular, the last file is the log file of LAMMPS, which would present an error message in the last line. Please refer to [this page](https://lammps.sandia.gov/doc/Errors_messages.html) for the explanation of each error message. Once you figure out what went wrong, fix the problem, and resubmit the job
+- The job was finished successfully. In this case, the file `lmp_gsfe.err` is empty. Proceed to the next step.
 
 You will find a lot of files in the directory. One file is called `gsfe_ori`. In the same directory on Pod, type
 
@@ -122,8 +122,35 @@ then hit Return. You will find a new file called `gsfe`. The first and second co
 
 As usual, feel free to use any software to plot the curve. Here is [a selected list](https://en.wikipedia.org/wiki/List_of_information_graphics_software). I recommend Gnuplot. There are many tutorials on Gnuplot, e.g., [this one](https://www.usm.uni-muenchen.de/CAST/talks/gnuplot.pdf).
 
-Now, go back to the file `lmp.in` and read it. Look up the meaning of each LAMMPS command on [this page](https://lammps.sandia.gov/doc/Commands_all.html).
+Now, go back to the file `lmp_gsfe.in` and read it. Look up the meaning of each LAMMPS command on [this page](https://lammps.sandia.gov/doc/Commands_all.html).
 
 # OVITO
 
-In the directory, `ucsb-intern-test`, you will find a lot of dump files, which contain information of atomic positions. To visualize these files, download them, via Filezilla, to your local computer. Then install [OVITO](http://www.ovito.org/) on your computer. Read [this page](http://www.ovito.org/docs/current/) to learn how to use it.
+In the directory, `ucsb-intern-gsfe`, you will find a lot of dump files, which contain information of atomic positions. To visualize these files, download them, via Filezilla, to your local computer. Then install [OVITO](http://www.ovito.org/) on your computer. Read [this page](http://www.ovito.org/docs/current/) to learn how to use it.
+
+# Another LAMMPS example
+
+First, on your own computer, download these four files to a local directory `peierls` from this github repository. They are
+
+- `lmp_peierls.batch`, which is for job submission
+- `lmp_peierls.data`, which is the LAMMPS data file
+- `lmp_peierls.in`, which is the LAMMPS input file
+- `MoNbTi_A_atom.eam.alloy`, which is an interatomic potential file developed by [Wu-Rong Jian](https://github.com/wrj2018/Intermetallics_2020)
+
+Then on Pod, create a new directory in your `$HOME`. Say the directory is named `ucsb-intern-peierls`. The command is
+
+`mkdir ucsb-intern-peierls`
+
+Then upload, via Filezilla, the four files from your local computer to `ucsb-intern-peierls` on Pod. 
+
+Then, in your terminal emulator, type
+
+`cd ucsb-intern-peierls`
+
+then hit Return. Then submit the job by typing
+
+`sbatch lmp_peierls.batch`
+
+then hit Return.
+
+After the job is finished, you will find a new file called `strain-stress`. The first and second columns of this file, respectively, are the _yz_ components of the strain tensor and stress tensor of the system.

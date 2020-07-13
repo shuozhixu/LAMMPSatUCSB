@@ -1,0 +1,23 @@
+#!/bin/bash -l
+#SBATCH --job-name=gsfe
+#SBATCH --output=lmp_gsfe.out
+#SBATCH --error=lmp_gsfe.err
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=4
+#SBATCH -t 100:00:00
+
+# Defining the executable and scratch directory
+
+cd ${SLURM_SUBMIT_DIR}
+
+module load intel/18
+module load lammps/3Mar20
+/bin/hostname
+
+# execute lammps
+echo "begin lammps"
+echo "the job is ${SLURM_JOB_ID}"
+
+mpirun -np $SLURM_NPROCS /sw/csc/lammps/3Mar20/lmp -in lmp_gsfe.in
+
+echo "lammps out"

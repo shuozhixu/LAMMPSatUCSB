@@ -1,0 +1,88 @@
+
+# ------------------- INITIALIZE -------------------------------
+units           metal
+boundary        p p p
+atom_style      atomic
+
+
+# ------------------- ATOM DEFINE ------------------------------
+
+read_data	lmp_gsfe.data
+
+#create_atoms    1 region model
+
+# ------------------- FIELD DEFINE -----------------------------
+pair_style      eam/alloy
+pair_coeff      * * MoNbTi_A_atom.eam.alloy A A A
+
+# ------------------- SETTINGS ---------------------------------
+
+variable        myTemp equal 10
+
+neighbor        0.3     bin
+neigh_modify    delay   10
+
+thermo          1000
+#velocity        all create ${myTemp} 1917
+thermo_style    custom step etotal
+
+region		upbound block INF INF 30. INF INF INF units box
+region		lobound block INF INF INF 11. INF INF units box
+
+group		upbound region upbound
+group		lobound region lobound
+group		boundary union lobound upbound
+group		mobile subtract all boundary
+
+region		upper block INF INF 21. INF INF INF units box
+region		lower block INF INF INF 21. INF INF units box
+
+group		top region upper
+group		bot region lower
+
+variable        stepn equal 100
+variable        stepm equal ${stepn}+1
+
+variable        latparam equal 3.225
+
+variable        area equal lx*lz
+
+variable        disp equal (${latparam}*sqrt(3))/${stepn}
+
+displace_atoms  bot move 0 0 -${disp} units box
+
+variable        a loop ${stepm}
+label           loop
+
+variable        rdisp equal ($a-1)/${stepn}
+
+displace_atoms  bot move 0. 0. ${disp} units box
+
+compute         peratom all pe/atom
+compute         eatoms all reduce sum c_peratom
+
+variable        gsfe equal c_eatoms/${area}*1.60218*10000
+
+dump            1 all custom 10000 dump.* id type xs ys zs
+
+thermo          1
+thermo_style    custom step pe c_eatoms
+
+# ------------------- EQUILIBRATE -----------------------
+
+fix		1 boundary setforce 0.0 0. 0.0
+fix		2 mobile setforce 0. NULL 0.
+
+min_style       cg
+minimize        0. 0. 100000 100000
+
+print           "${rdisp} ${gsfe}" append gsfe_ori
+
+undump          1
+unfix           1
+unfix		2
+uncompute       peratom
+uncompute       eatoms
+
+next            a
+jump            lmp_gsfe.in loop
