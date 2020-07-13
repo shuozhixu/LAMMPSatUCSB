@@ -83,7 +83,7 @@ To learn LAMMPS, you may start with [this page](https://lammps.sandia.gov/tutori
 
 LAMMPS is installed on Pod, so you don't need to install it yourself. 
 
-First, on your own computer, download these five files to a local directory `gsfe` from this github repository. They are
+First, on your own computer, download these five files to a local directory `local_gsfe` from this github repository. They are
 
 - `lmp_gsfe.batch`, which is for job submission
 - `lmp_gsfe.data`, which is the LAMMPS data file
@@ -91,15 +91,15 @@ First, on your own computer, download these five files to a local directory `gsf
 - `MoNbTi_A_atom.eam.alloy`, which is an interatomic potential file developed by [Wu-Rong Jian](https://github.com/wrj2018/Intermetallics_2020)
 - `gsfe_curve.sh`, which is the post-processing bash script
 
-Then on Pod, create a new directory in your `$HOME`. Say the directory is named `ucsb-intern-gsfe`. The command is
+Then on Pod, create a new directory in your `$HOME`. Say the directory is named `pod_gsfe`. The command is
 
-`mkdir ucsb-intern-gsfe`
+`mkdir pod_gsfe`
 
-Then upload, via Filezilla, the five files from your local computer to `ucsb-intern-gsfe` on Pod. 
+Then upload, via Filezilla, the five files from your local computer to `pod_gsfe` on Pod. 
 
 Then, in your terminal emulator, type
 
-`cd ucsb-intern-gsfe`
+`cd pod_gsfe`
 
 then hit Return. Then submit the job by typing
 
@@ -126,26 +126,26 @@ Now, go back to the file `lmp_gsfe.in` and read it. Look up the meaning of each 
 
 # OVITO
 
-In the directory, `ucsb-intern-gsfe`, you will find a lot of dump files, which contain information of atomic positions. To visualize these files, download them, via Filezilla, to your local computer. Then install [OVITO](http://www.ovito.org/) on your computer. Read [this page](http://www.ovito.org/docs/current/) to learn how to use it.
+In the directory on Pod, `pod_gsfe`, you will find a lot of dump files, which contain information of atomic positions. To visualize these files, download them, via Filezilla, to your local computer. Then install [OVITO](http://www.ovito.org/) on your computer. Read [this page](http://www.ovito.org/docs/current/) to learn how to use it.
 
 # Another LAMMPS example
 
-First, on your own computer, download these four files to a local directory `peierls` from this github repository. They are
+First, on your own computer, download these four files to a local directory `local_peierls` from this github repository. They are
 
 - `lmp_peierls.batch`, which is for job submission
 - `lmp_peierls.data`, which is the LAMMPS data file
 - `lmp_peierls.in`, which is the LAMMPS input file
 - `MoNbTi_A_atom.eam.alloy`, which is an interatomic potential file developed by [Wu-Rong Jian](https://github.com/wrj2018/Intermetallics_2020)
 
-Then on Pod, create a new directory in your `$HOME`. Say the directory is named `ucsb-intern-peierls`. The command is
+Then on Pod, create a new directory, `pod_peierls`, in your `$HOME`, by typing
 
-`mkdir ucsb-intern-peierls`
+`mkdir pod_peierls`
 
-Then upload, via Filezilla, the four files from your local computer to `ucsb-intern-peierls` on Pod. 
+then hit Return. Then upload, via Filezilla, the four files from your local computer to `pod_peierls` on Pod. 
 
 Then, in your terminal emulator, type
 
-`cd ucsb-intern-peierls`
+`cd pod_peierls`
 
 then hit Return. Then submit the job by typing
 
@@ -153,4 +153,4 @@ then hit Return. Then submit the job by typing
 
 then hit Return.
 
-After the job is finished, you will find a new file called `strain-stress`. The first and second columns of this file, respectively, are the _yz_ components of the strain tensor and stress tensor of the system.
+After the job is finished, you will find a new file called `strain-stress`. The first and second columns of this file, respectively, are the _yz_ components of the strain tensor and stress tensor of the simulation cell. Plot it and you will see a point at which the stress-strain relation starts to deviate from linearity. Visualize the dump files in OVITO, and you will see the screw dislocation starts to move at that point. The corresponding stress is the Peierls stress.
