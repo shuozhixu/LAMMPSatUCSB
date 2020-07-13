@@ -51,7 +51,7 @@ undump 1
 variable LY equal ly
 
 variable Eel1   equal  0.00
-variable Eel2   equal  0.005
+variable Eel2   equal  0.0005
 
 # in units of radian
 variable theta equal 0.
@@ -69,7 +69,7 @@ variable  Lxy2  equal   (${Epxy}+${Eel2})*${LY}*sin(${theta})
 
 fix 2 tb setforce 0.0 NULL 0.
 
-variable N equal 5000
+variable N equal 500
 
 label       loop
 variable    a loop ${N}
