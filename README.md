@@ -20,11 +20,11 @@ To connect to Pod, you need the [UCSB VPN](https://www.it.ucsb.edu/vpn) unless y
 
 # FTP Client
 
-You need a file transfer protocol (FTP) client to transfer data between Pod and your own computer. Feel free to use any FTP client. Here is [a selected list](https://en.wikipedia.org/wiki/Comparison_of_FTP_client_software).
+You need a file transfer protocol (FTP) client to transfer data between Pod and your local computer. Feel free to use any FTP client. Here is [a selected list](https://en.wikipedia.org/wiki/Comparison_of_FTP_client_software).
 
 I personally recommend FileZilla. Below is an instruction:
 
-1. Download and install [Filezilla Client](https://filezilla-project.org/) on your own computer.
+1. Download and install [Filezilla Client](https://filezilla-project.org/) on your local computer.
 2. Open it.
 3. The first time you use it, File --> Site Manager --> New site --> rename it 'Pod', then in the window on the right hand side:
 	- Protocol: SFTP - SSH File Transfer Protocol
@@ -34,7 +34,7 @@ I personally recommend FileZilla. Below is an instruction:
 	- Password: ucsb-intern-pw
 	- Connect
 4. The next time you use it, File --> Site Manager --> select 'Pod', then 'Connect'.
-5. To transfer files between Pod and your own computer, please refer to [this page](https://wiki.filezilla-project.org/Using).
+5. To transfer files between Pod and your local computer, please refer to [this page](https://wiki.filezilla-project.org/Using).
 
 # Terminal Emulator
 
@@ -87,13 +87,16 @@ To learn LAMMPS, you may start with [this page](https://lammps.sandia.gov/tutori
 
 LAMMPS is installed on Pod, so you don't need to install it yourself. 
 
-First, on your own computer, download these five files to a local directory `local_gsfe` from this github repository. They are
+First, on your local computer, download five files to a local directory `local_gsfe`. The first four files can be downloaded from this repository, including
 
 - `lmp_gsfe.batch`, which is for job submission
 - `lmp_gsfe.data`, which is the LAMMPS data file
 - `lmp_gsfe.in`, which is the LAMMPS input file
-- `MoNbTi_A_atom.eam.alloy`, which is an interatomic potential file developed by [Wu-Rong Jian](https://github.com/wrj2018/Intermetallics_2020)
 - `gsfe_curve.sh`, which is the post-processing bash script
+
+The fifth file is
+
+- `MoNbTi_A_atom.eam.alloy`, which is the interatomic potential file and can be downloaded from [this page](https://github.com/wrj2018/Intermetallics_2020)
 
 Then on Pod, create a new directory in your `$HOME`. Say the directory is named `pod_gsfe`. The command is
 
@@ -128,18 +131,25 @@ As usual, feel free to use any software to plot the curve. Here is [a selected l
 
 Now, go back to the file `lmp_gsfe.in` and read it. Look up the meaning of each LAMMPS command on [this page](https://lammps.sandia.gov/doc/Commands_all.html).
 
+Note: If you use any file from this section in your published work, please cite
+
+- Shuozhi Xu, Emily Hwang, Wu-Rong Jian, Yanqing Su, Irene J. Beyerlein, [Atomistic calculations of the generalized stacking fault energies in two refractory multi-principal element alloys](http://dx.doi.org/10.1016/j.intermet.2020.106844), Intermetallics 124 (2020) 106844
+
 # OVITO
 
 In the directory on Pod, `pod_gsfe`, you will find a lot of dump files, which contain information of atomic positions. To visualize these files, download them, via Filezilla, to your local computer. Then install [OVITO](http://www.ovito.org/) on your computer. Read [this page](http://www.ovito.org/docs/current/) to learn how to use it.
 
 # Another LAMMPS example
 
-First, on your own computer, download these four files to a local directory `local_peierls` from this github repository. They are
+First, on your local computer, download four files to a local directory `local_peierls`. The first three files can be downloaded from this repository, including
 
 - `lmp_peierls.batch`, which is for job submission
 - `lmp_peierls.data`, which is the LAMMPS data file
 - `lmp_peierls.in`, which is the LAMMPS input file
-- `MoNbTi_A_atom.eam.alloy`, which is an interatomic potential file developed by [Wu-Rong Jian](https://github.com/wrj2018/Intermetallics_2020)
+
+The fourth file is
+
+- `MoNbTi_A_atom.eam.alloy`, which is the interatomic potential file and can be downloaded from [this page](https://github.com/wrj2018/Intermetallics_2020)
 
 Then on Pod, create a new directory, `pod_peierls`, in your `$HOME`, by typing
 
@@ -158,3 +168,7 @@ then hit Return. Then submit the job by typing
 then hit Return.
 
 After the job is finished, you will find a new file called `strain-stress`. The first and second columns of this file, respectively, are the _yz_ components of the strain tensor and stress tensor of the simulation cell. The strain is unitless and the stress is in units of MPa. Download `strain-stress` to your local computer, plot it, and you will see a point at which the stress-strain relation starts to deviate from linearity. Visualize the dump files in OVITO, and you will see that at that point, the screw dislocation starts to move along the positive _x_ direction. The corresponding stress is then the Peierls stress for the anti-twinning direction on the {112} plane in MoNbTi<sub>_A_</sub>, 1174 MPa.
+
+Note: If you use any file from this section in your published work, please cite
+
+- Shuozhi Xu, Yanqing Su, Wu-Rong Jian, Irene J. Beyerlein, Local slip resistance in equal-molar MoNbTi multi-principal element alloys, Acta Mater. (under review)
