@@ -18,7 +18,7 @@ As an intern in the Beyerlein group at UC Santa Barbara, you will learn atomisti
 
 To connect to Pod, you need the [UCSB VPN](https://www.it.ucsb.edu/vpn) unless you are using the [campus network](https://www.it.ucsb.edu/wireless-networking).
 
-# FTP Client
+# FTP client
 
 You need a file transfer protocol (FTP) client to transfer data between Pod and your local computer. Feel free to use any FTP client. Here is [a selected list](https://en.wikipedia.org/wiki/Comparison_of_FTP_client_software).
 
@@ -36,7 +36,7 @@ I personally recommend FileZilla. Below is an instruction:
 4. The next time you use it, File --> Site Manager --> select 'Pod', then 'Connect'.
 5. To transfer files between Pod and your local computer, please refer to [this page](https://wiki.filezilla-project.org/Using).
 
-# Terminal Emulator
+# Terminal emulator
 
 You also need a terminal emulator to 'talk with' Pod, e.g., submit a job. Feel free to use any terminal emulator. Here is [a selected list](https://en.wikipedia.org/wiki/List_of_terminal_emulators).
 
@@ -83,7 +83,7 @@ And here are more references on MD:
 
 To learn LAMMPS, you may start with [this page](https://lammps.sandia.gov/tutorials.html) and [this page](https://icme.hpc.msstate.edu/mediawiki/index.php/LAMMPS_tutorials).
 
-# Use LAMMPS on Pod
+# An example: Calculating the GSFE curve in a BCC metal
 
 LAMMPS is installed on Pod, so you don't need to install it yourself. 
 
@@ -139,12 +139,12 @@ Note: If you use any file from this section in your published work, please cite
 
 In the directory on Pod, `pod_gsfe`, you will find a lot of dump files, which contain information of atomic positions. To visualize these files, download them, via Filezilla, to your local computer. Then install [OVITO](http://www.ovito.org/) on your computer. Read [this page](http://www.ovito.org/docs/current/) to learn how to use it.
 
-# Another LAMMPS example
+# Another example: Calculating the Peierls stress in a BCC metal
 
 First, on your local computer, download four files to a local directory `local_peierls`. The first three files can be downloaded from this repository, including
 
 - `lmp_peierls.batch`, which is for job submission
-- `lmp_peierls.data`, which is the LAMMPS data file
+- `lmp_peierls.data`, which is the LAMMPS data file, containing a screw dislocation on the {112} plane
 - `lmp_peierls.in`, which is the LAMMPS input file
 
 The fourth file is
@@ -167,7 +167,16 @@ then hit Return. Then submit the job by typing
 
 then hit Return.
 
-After the job is finished, you will find a new file called `strain-stress`. The first and second columns of this file, respectively, are the _yz_ components of the strain tensor and stress tensor of the simulation cell. The strain is unitless and the stress is in units of MPa. Download `strain-stress` to your local computer, plot it, and you will see a point at which the stress-strain relation starts to deviate from linearity. Visualize the dump files in OVITO, and you will see that at that point, the screw dislocation starts to move along the positive _x_ direction. The corresponding stress is then the Peierls stress for the anti-twinning direction on the {112} plane in MoNbTi<sub>_A_</sub>, 1174 MPa.
+After the job is finished, you will find a new file called `strain-stress`. The first and second columns of this file, respectively, are the _yz_ components of the strain tensor and stress tensor of the simulation cell. The strain is unitless and the stress is in units of MPa. Download `strain-stress` to your local computer, plot it, and you will see a point at which the stress-strain relation starts to deviate from linearity. Let's call it `P1`.
+
+To visualize the dislocation core, download dump files to the same directory on your local computer. You do not need to download all of them, just selected ones, e.g., dump.0.load, dump.50.load, dump.100.load, ..., dump.500.load. Open any of them in OVITO by File --> Load File --> select the file --> Open. Then, Add modification --> Common neighbor analysis. The blue and white atoms, respectively, are in BCC and disordered local structures. The white atoms in the center are those in the dislocation core. Select one white atom using the [crosshair button](https://www.ovito.org/docs/current/data_inspector.particles.php).
+
+Next, go through all dump files frame by frame in OVITO and pay attention to between which two frames the dislocation core starts to move along the positive _x_ direction. Let's say the two frames are dump.250.load and dump.300.load. Then download dump.260.load, dump.270.load, dump.280.load, and dump.290.load from Pod to the same directory (to which all previous dump files were downloaded) on your local computer. Open any dump file again in OVITO, by File --> Load File --> select the file --> Replace selected. Again, go through the newly downloaded dump files frame by frame and identify the two frames between which the dislocation core starts to move. Let's say the two frames are dump.260.load adn dump.270.load. Then download dump.261.load, dump.262.load, ..., dump.269.load to the same local directory. Open any dump file, go through these new dump files and identify the two frames between which the dislocation core starts to move. Let's say the two frames are dump.262.load and dump.263.load. Then the Peierls stress is the stress of the simulation cell correponding to dump.262.load. The strain and stress of the simulation cell at this point can be found in line 262 of the file `strain-stress`, and the corresponding stress is then the Peierls stress for the anti-twinning direction on the {112} plane in MoNbTi<sub>_A_</sub>, 1174 MPa.
+
+In a general case,
+
+- The dislocation core may move along the negative _x_ direction, depending on the Burgers vector of the dislocation and the shear direction.
+- Sometimes there are more than one point on the stress-strain curve at which the stress-strain relation starts to deviate from linearity. Let's say there are three such points and we call them `P1`, `P2`, and `P3`. Then the point at which the dislocation core starts to move may be one of them, or none of them. In other words, do not assume that any of these points is the critical point associated with the Peierls stress. If the point at which the dislocation core starts to move does not correspond to any turning point identified on the stress-strain curve, go with the former point instead of the latter.
 
 Note: If you use any file from this section in your published work, please cite
 
