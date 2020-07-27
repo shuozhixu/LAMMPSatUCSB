@@ -87,7 +87,7 @@ To learn LAMMPS, you may start with [this page](https://lammps.sandia.gov/tutori
 
 LAMMPS is installed on Pod, so you don't need to install it yourself. 
 
-First, on your local computer, download five files to a local directory `local_gsfe`. The first four files can be downloaded from this repository, including
+First, on your local computer, download five files to a local directory `local_gsfe`. The first four files can be downloaded from this github repository, including
 
 - `lmp_gsfe.batch`, which is for job submission
 - `lmp_gsfe.data`, which is the LAMMPS data file
@@ -141,7 +141,7 @@ In the directory on Pod, `pod_gsfe`, you will find a lot of dump files, which co
 
 # Another example: Calculating the Peierls stress in a BCC metal
 
-First, on your local computer, download four files to a local directory `local_peierls`. The first three files can be downloaded from this repository, including
+First, on your local computer, download four files to a local directory `local_peierls`. The first three files can be downloaded from this github repository, including
 
 - `lmp_peierls.batch`, which is for job submission
 - `lmp_peierls.data`, which is the LAMMPS data file, containing a screw dislocation on the {112} plane
@@ -167,13 +167,23 @@ then hit Return. Then submit the job by typing
 
 then hit Return.
 
-After the job is finished, you will find a new file called `strain-stress`. The first and second columns of this file, respectively, are the _yz_ components of the strain tensor and stress tensor of the simulation cell. The strain is unitless and the stress is in units of MPa. Download `strain-stress` to your local computer, plot it, and you will see a point at which the stress-strain relation starts to deviate from linearity. Let's call it `P1`.
+<a name="LSR"></a>After the job is finished, you will find a new file called `strain-stress`. The first and second columns of this file, respectively, are the _yz_ components of the strain tensor and stress tensor of the simulation cell. The strain is unitless and the stress is in units of MPa. Download `strain-stress` to your local computer, plot it, and you will see a point at which the stress-strain relation starts to deviate from linearity. Let's call it `P1`.
 
-To visualize the dislocation core, download dump files to the same directory on your local computer. You do not need to download all of them, just selected ones, e.g., dump.0.load, dump.50.load, dump.100.load, ..., dump.500.load. Open any of them in OVITO by File --> Load File --> select the file --> Open. Then, Add modification --> Common neighbor analysis. The blue and white atoms, respectively, are in BCC and disordered local structures. The white atoms in the center are those in the dislocation core. Select one white atom using the [crosshair button](https://www.ovito.org/docs/current/data_inspector.particles.php).
+To visualize the dislocation core, download dump files to the same directory on your local computer. You do not need to download all of them at once, just selected ones, e.g., dump.0.load, dump.50.load, dump.100.load, ..., dump.500.load. Open any of them in OVITO by File --> Load File --> select the file --> Open. Then, Add modification --> Dislocation analysis (DXA). The blue and white atoms, respectively, are in BCC and disordered local structures. The green line is the dislocation line. White atoms exist in three locations: top layer, bottom layer, and center of the simulation cell. Those in the center are atoms in the dislocation core. Select one white atom using the [crosshair button](https://www.ovito.org/docs/current/data_inspector.particles.php).
 
-Next, go through all dump files frame by frame in OVITO and pay attention to between which two frames the dislocation core starts to move along the positive _x_ direction. Let's say the two frames are dump.250.load and dump.300.load. Then download dump.260.load, dump.270.load, dump.280.load, and dump.290.load from Pod to the same directory (to which all previous dump files were downloaded) on your local computer. Open any dump file again in OVITO, by File --> Load File --> select the file --> Replace selected. Again, go through the newly downloaded dump files frame by frame and identify the two frames between which the dislocation core starts to move. Let's say the two frames are dump.260.load adn dump.270.load. Then download dump.261.load, dump.262.load, ..., dump.269.load to the same local directory. Open any dump file, go through these new dump files and identify the two frames between which the dislocation core starts to move. Let's say the two frames are dump.262.load and dump.263.load. Then the Peierls stress is the stress of the simulation cell correponding to dump.262.load. The strain and stress of the simulation cell at this point can be found in line 262 of the file `strain-stress`, and the corresponding stress is then the Peierls stress for the anti-twinning direction on the {112} plane in MoNbTi<sub>_A_</sub>, 1174 MPa.
+Next, go through all dump files frame by frame in OVITO and pay attention to between which two frames the dislocation core starts to move along the positive _x_ direction. Why is this important? Because when the applied stress surpasses the Peierls stress, the dislocation line should [move from one Peierls valley to another](https://www.tf.uni-kiel.de/matwis/amat/def_en/kap_5/backbone/r5_3_1.html). Therefore, if the dislocation moves between one dump file and the next one, the Peierls stress is between the two stresses associated with these two dump files.
 
-In a general case,
+How do we determine whether the dislocation moves? Usually one of the two criteria is used: (i) does any white/blue atom become blue/white? (ii) does the green line move by a non-negligible distance? The keyword here is "non-negligible". Regardless of whether the Peierls stress has been reached, the green line may move a little bit between any two frames, especially when the dislocation is an edge dislocation. However, this may be because the entire simulation cell is sheared and so are all atoms within. If, from dump file A to dump file B, the dislocation moves a little bit, and from dump file B to dump file C, the dislocation moves by a longer distance, then likely the Peierls stress is reached somewhere between B and C.
+
+Note: For a screw dislocation, it is important to check whether the dislocation moves within the _xz_ plane. In many cases, the screw dislocation immediately crosses slip to a plane that is not parallel to _xz_. For more on this topic, read [this paper](https://doi.org/10.1016/j.commatsci.2014.03.064). When this happens, the Peierls stress is not calculable. Write this down and move on to the next calculation. Sometimes the screw dislocation moves within the _xz_ plane by a certain distance, and then crosses slip. In this case, the Peierls stress is considered calculable. Note that an edge dislocation does not cross slip, so its Peierls stress should always be calculable.
+
+In the example provided in this github repository, the dislocation moves between dump.250.load and dump.300.load. Then download dump.260.load, dump.270.load, dump.280.load, and dump.290.load from Pod to the same directory (to which all previous dump files were downloaded) on your local computer. Open any dump file again in OVITO, by File --> Load File --> select the file --> Replace selected. Again, go through the newly downloaded dump files frame by frame and identify the two frames between which the dislocation core starts to move. The two frames are dump.260.load adn dump.270.load.
+
+Then download dump.261.load, dump.262.load, ..., dump.269.load to the same local directory. Open any dump file, go through these new dump files and identify the two frames between which the dislocation core starts to move. The two frames are dump.262.load and dump.263.load.
+
+Then the Peierls stress is the stress of the simulation cell correponding to dump.262.load. The strain and stress of the simulation cell at this point can be found in line 262 of the file `strain-stress`, and the corresponding stress is then the Peierls stress for the anti-twinning direction on the {112} plane in MoNbTi<sub>_A_</sub>, 1174 MPa. In the current case, the critical point associated with the Peierls stress is also `P1` which was identified earlier.
+
+In a general case, however,
 
 - The dislocation core may move along the negative _x_ direction, depending on the Burgers vector of the dislocation and the shear direction.
 - Sometimes there are more than one point on the stress-strain curve at which the stress-strain relation starts to deviate from linearity. Let's say there are three such points and we call them `P1`, `P2`, and `P3`. Then the point at which the dislocation core starts to move may be one of them, or none of them. In other words, do not assume that any of these points is the critical point associated with the Peierls stress. If the point at which the dislocation core starts to move does not correspond to any turning point identified on the stress-strain curve, go with the former point instead of the latter.
