@@ -83,11 +83,16 @@ And here are more references on MD:
 
 To learn LAMMPS, you may start with [this page](https://lammps.sandia.gov/tutorials.html) and [this page](https://icme.hpc.msstate.edu/mediawiki/index.php/LAMMPS_tutorials).
 
+Note: LAMMPS is installed on Pod, so you don't need to install it yourself.
+
 # An example: Calculating the GSFE curve in a BCC metal
 
-LAMMPS is installed on Pod, so you don't need to install it yourself. 
+First, to understand the GSFE curve, read these two papers:
 
-First, on your local computer, download five files to a local directory `local_gsfe`. The first four files can be downloaded from this github repository, including
+- Shuozhi Xu, Yanqing Su, Lauren T.W. Smith, Irene J. Beyerlein, [Frank-Read source operation in six body-centered cubic refractory metals](http://dx.doi.org/10.1016/j.jmps.2020.104017), J. Mech. Phys. Solids 141 (2020) 104017
+- Shuozhi Xu, Emily Hwang, Wu-Rong Jian, Yanqing Su, Irene J. Beyerlein, [Atomistic calculations of the generalized stacking fault energies in two refractory multi-principal element alloys](http://dx.doi.org/10.1016/j.intermet.2020.106844), Intermetallics 124 (2020) 106844
+
+When you are ready to run simulations, download five files to a local directory `local_gsfe` on your local computer. The first four files can be downloaded from this github repository, including
 
 - `lmp_gsfe.batch`, which is for job submission
 - `lmp_gsfe.data`, which is the LAMMPS data file
@@ -139,9 +144,21 @@ Note: If you use any file from this section in your published work, please cite
 
 In the directory on Pod, `pod_gsfe`, you will find a lot of dump files, which contain information of atomic positions. To visualize these files, download them, via Filezilla, to your local computer. Then install [OVITO](http://www.ovito.org/) on your computer. Read [this page](http://www.ovito.org/docs/current/) to learn how to use it.
 
-# Another example: Calculating the Peierls stress in a BCC metal
+# Another example: Calculating the Peierls stress of a screw dislocation in a BCC metal
 
-First, on your local computer, download four files to a local directory `local_peierls`. The first three files can be downloaded from this github repository, including
+First, to understand dislocations, read these two books/book chapters/papers:
+
+- D. Hull, D.J. Bacon, [Introduction of Dislocations](https://www.amazon.com/Introduction-Dislocations-Goldsmiths-Professor-University/dp/0080966721), 5th edition, 2011 [[PDF](https://drive.google.com/file/d/0Bxsx9iwZLpZxRktuUVozXzB6QWs/view?usp=sharing)]
+- Vasily V. Bulatov, Wei Cai, [Computer Simulations of Dislocations](https://www.amazon.com/Computer-Simulations-Dislocations-Materials-Modelling/dp/0198526148), 2006 [[PDF](https://drive.google.com/file/d/0Bxsx9iwZLpZxMHl2cVp6QVdRWWM/view?usp=sharing)]
+- Johannes Weertman, Julia R. Weertman, [Elementary Dislocation Theory](https://www.amazon.com/Elementary-Dislocation-Theory-Johannes-Weertman/dp/0195069005), 1992
+- Peter M. Anderson, John P. Hirth, Jens Lothe, [Theory of Dislocations](https://www.amazon.com/Theory-Dislocations-Peter-M-Anderson/dp/0521864364), 3rd edition, 2017
+- D.J. Bacon, Y.N. Osetsky, D. Rodney, [Dislocation-obstacle interactions at the atomic level](http://dx.doi.org/10.1016/S1572-4859(09)01501-0), in _Dislocations in Solids_, 15 (2009) 1--90 [[PDF](http://ilm-perso.univ-lyon1.fr/~drodney/dr_articles/2009_Dislo_In_Solids%5BBacon_Osetsky_Rodney%5D.pdf)]
+- Yu N Osetsky, D J Bacon, [An atomic-level model for studying the dynamics of edge dislocations in metals](http://dx.doi.org/10.1088/0965-0393/11/4/302), Modelling Simul. Mater. Sci. Eng. 11 (2003) 427
+- Wu-Rong Jian, Min Zhang, Shuozhi Xu, Irene J. Beyerlein, [Atomistic simulations of dynamics of an edge dislocation and its interaction with a void in copper: A comparative study](http://dx.doi.org/10.1088/1361-651X/ab8358), Modelling Simul. Mater. Sci. Eng. 28 (2020) 045004
+
+Some Google Drive links above are private. To have access, [email me](mailto:shuozhixu@ucsb.edu) and let me know the email address associated with your Google Drive.
+
+When you are ready to run simulations, download four files to a local directory `local_peierls` on your local computer. The first three files can be downloaded from this github repository, including
 
 - `lmp_peierls.batch`, which is for job submission
 - `lmp_peierls.data`, which is the LAMMPS data file, containing a screw dislocation on the {112} plane
@@ -190,4 +207,4 @@ In a general case, however,
 
 Note: If you use any file from this section in your published work, please cite
 
-- Shuozhi Xu, Yanqing Su, Wu-Rong Jian, Irene J. Beyerlein, Local slip resistance in equal-molar MoNbTi multi-principal element alloys, Acta Mater. (under review)
+- Shuozhi Xu, Yanqing Su, Wu-Rong Jian, Irene J. Beyerlein, [Local slip resistances in equal-molar MoNbTi multi-principal element alloy](http://dx.doi.org/10.1016/j.actamat.2020.10.042), Acta Mater. (in press)
