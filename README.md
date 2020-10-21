@@ -87,10 +87,14 @@ Note: LAMMPS is installed on Pod, so you don't need to install it yourself.
 
 # An example: Calculating the GSFE curve in a BCC metal
 
-First, to understand the GSFE curve, read these two papers:
+First, to understand the generalized stacking fault energy (GSFE) curve, read these materials:
 
-- Shuozhi Xu, Yanqing Su, Lauren T.W. Smith, Irene J. Beyerlein, [Frank-Read source operation in six body-centered cubic refractory metals](http://dx.doi.org/10.1016/j.jmps.2020.104017), J. Mech. Phys. Solids 141 (2020) 104017
+- Sections 2 & 3 of: Shuozhi Xu, Yanqing Su, Lauren T.W. Smith, Irene J. Beyerlein, [Frank-Read source operation in six body-centered cubic refractory metals](http://dx.doi.org/10.1016/j.jmps.2020.104017), J. Mech. Phys. Solids 141 (2020) 104017
 - Shuozhi Xu, Emily Hwang, Wu-Rong Jian, Yanqing Su, Irene J. Beyerlein, [Atomistic calculations of the generalized stacking fault energies in two refractory multi-principal element alloys](http://dx.doi.org/10.1016/j.intermet.2020.106844), Intermetallics 124 (2020) 106844
+
+The GSFE curve is just one curve taken from the GSFE surface, also known as the &gamma;-surface, which is usually calculated in FCC metals. To know more about the GSFE surface, please read
+
+- Yanqing Su, Shuozhi Xu, Irene J. Beyerlein, [Density functional theory calculations of generalized stacking fault energy surfaces for eight face-centered cubic transition metals](http://dx.doi.org/10.1063/1.5115282), J. Appl. Phys. 126 (2019) 105112
 
 When you are ready to run simulations, download five files to a local directory `local_gsfe` on your local computer. The first four files can be downloaded from this github repository, including
 
@@ -146,15 +150,24 @@ In the directory on Pod, `pod_gsfe`, you will find a lot of dump files, which co
 
 # Another example: Calculating the Peierls stress of a screw dislocation in a BCC metal
 
-First, to understand dislocations, read these materials:
+First, to understand dislocations, I recommend these readings depending on how much you already know and how much more you want to know.
 
-- D. Hull, D.J. Bacon, [Introduction of Dislocations](https://www.amazon.com/Introduction-Dislocations-Goldsmiths-Professor-University/dp/0080966721), 5th edition, 2011 [[PDF](https://drive.google.com/file/d/0Bxsx9iwZLpZxRktuUVozXzB6QWs/view?usp=sharing)]
-- Vasily V. Bulatov, Wei Cai, [Computer Simulations of Dislocations](https://www.amazon.com/Computer-Simulations-Dislocations-Materials-Modelling/dp/0198526148), 2006 [[PDF](https://drive.google.com/file/d/0Bxsx9iwZLpZxMHl2cVp6QVdRWWM/view?usp=sharing)]
-- Johannes Weertman, Julia R. Weertman, [Elementary Dislocation Theory](https://www.amazon.com/Elementary-Dislocation-Theory-Johannes-Weertman/dp/0195069005), 1992
-- Peter M. Anderson, John P. Hirth, Jens Lothe, [Theory of Dislocations](https://www.amazon.com/Theory-Dislocations-Peter-M-Anderson/dp/0521864364), 3rd edition, 2017
-- D.J. Bacon, Y.N. Osetsky, D. Rodney, [Dislocation-obstacle interactions at the atomic level](http://dx.doi.org/10.1016/S1572-4859(09)01501-0), in _Dislocations in Solids_, 15 (2009) 1--90 [[PDF](http://ilm-perso.univ-lyon1.fr/~drodney/dr_articles/2009_Dislo_In_Solids%5BBacon_Osetsky_Rodney%5D.pdf)]
-- Yu N Osetsky, D J Bacon, [An atomic-level model for studying the dynamics of edge dislocations in metals](http://dx.doi.org/10.1088/0965-0393/11/4/302), Modelling Simul. Mater. Sci. Eng. 11 (2003) 427
-- Wu-Rong Jian, Min Zhang, Shuozhi Xu, Irene J. Beyerlein, [Atomistic simulations of dynamics of an edge dislocation and its interaction with a void in copper: A comparative study](http://dx.doi.org/10.1088/1361-651X/ab8358), Modelling Simul. Mater. Sci. Eng. 28 (2020) 045004
+- Beginner-level:
+
+	- D. Hull, D.J. Bacon, [Introduction of Dislocations](https://www.amazon.com/Introduction-Dislocations-Goldsmiths-Professor-University/dp/0080966721), 5th edition, 2011 [[PDF](https://drive.google.com/file/d/0Bxsx9iwZLpZxRktuUVozXzB6QWs/view?usp=sharing)]
+	- Yu N Osetsky, D J Bacon, [An atomic-level model for studying the dynamics of edge dislocations in metals](http://dx.doi.org/10.1088/0965-0393/11/4/302), Modelling Simul. Mater. Sci. Eng. 11 (2003) 427
+	- Wu-Rong Jian, Min Zhang, Shuozhi Xu, Irene J. Beyerlein, [Atomistic simulations of dynamics of an edge dislocation and its interaction with a void in copper: A comparative study](http://dx.doi.org/10.1088/1361-651X/ab8358), Modelling Simul. Mater. Sci. Eng. 28 (2020) 045004
+
+- Intermediate-level:
+
+	- D.J. Bacon, Y.N. Osetsky, D. Rodney, [Dislocation-obstacle interactions at the atomic level](http://dx.doi.org/10.1016/S1572-4859(09)01501-0), in _Dislocations in Solids_, 15 (2009) 1--90 [[PDF](http://ilm-perso.univ-lyon1.fr/~drodney/dr_articles/2009_Dislo_In_Solids%5BBacon_Osetsky_Rodney%5D.pdf)]
+	- Jaehyun Cho, Till Junge, Jean-Fran&ccedil;ois Molinari, Guillaume Anciaux, [Toward a 3D coupled atomistic and discrete dislocation dynamics simulation: dislocation core structures and Peierls stresses with several character angles in FCC aluminum](http://dx.doi.org/10.1186/s40323-015-0028-6), Adv. Model. Simul. Eng. Sci. 2 (2015) 12
+	- Vasily V. Bulatov, Wei Cai, [Computer Simulations of Dislocations](https://www.amazon.com/Computer-Simulations-Dislocations-Materials-Modelling/dp/0198526148), 2006 [[PDF](https://drive.google.com/file/d/0Bxsx9iwZLpZxMHl2cVp6QVdRWWM/view?usp=sharing)]
+	- Johannes Weertman, Julia R. Weertman, [Elementary Dislocation Theory](https://www.amazon.com/Elementary-Dislocation-Theory-Johannes-Weertman/dp/0195069005), 1992
+
+- Advanced-level:
+
+	- Peter M. Anderson, John P. Hirth, Jens Lothe, [Theory of Dislocations](https://www.amazon.com/Theory-Dislocations-Peter-M-Anderson/dp/0521864364), 3rd edition, 2017
 
 Some Google Drive links above are private. To have access, [email me](mailto:shuozhixu@ucsb.edu) and let me know the email address associated with your Google Drive.
 
