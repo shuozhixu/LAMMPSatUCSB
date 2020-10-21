@@ -146,7 +146,7 @@ In the directory on Pod, `pod_gsfe`, you will find a lot of dump files, which co
 
 # Another example: Calculating the Peierls stress of a screw dislocation in a BCC metal
 
-First, to understand dislocations, read these two books/book chapters/papers:
+First, to understand dislocations, read these materials:
 
 - D. Hull, D.J. Bacon, [Introduction of Dislocations](https://www.amazon.com/Introduction-Dislocations-Goldsmiths-Professor-University/dp/0080966721), 5th edition, 2011 [[PDF](https://drive.google.com/file/d/0Bxsx9iwZLpZxRktuUVozXzB6QWs/view?usp=sharing)]
 - Vasily V. Bulatov, Wei Cai, [Computer Simulations of Dislocations](https://www.amazon.com/Computer-Simulations-Dislocations-Materials-Modelling/dp/0198526148), 2006 [[PDF](https://drive.google.com/file/d/0Bxsx9iwZLpZxMHl2cVp6QVdRWWM/view?usp=sharing)]
