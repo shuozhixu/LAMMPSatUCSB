@@ -59,7 +59,7 @@ If you are not familiar with Linux, please refer to these webpages:
 - [Ubuntu](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview)
 - [Basic Linux commands](https://www.hostinger.com/tutorials/linux-commands)
 
-You also need a software to edit text files on Pod. Again, feel free to use anything. Here is [a selected list](https://en.wikipedia.org/wiki/List_of_text_editors). I recommend vim, which is already installed on Pod (and most, if not all, Mac and Linux systems). If you are not familiar with vim, please refer to these webpages:
+You also need a software package to edit text files on Pod. Again, feel free to use anything. Here is [a selected list](https://en.wikipedia.org/wiki/List_of_text_editors). I recommend vim, which is already installed on Pod (and most, if not all, Mac and Linux systems). If you are not familiar with vim, please refer to these webpages:
 
 - [vim 101](https://www.engadget.com/2012-07-10-vim-how-to.html)
 - [Getting started with vim](https://opensource.com/article/19/3/getting-started-vim)
