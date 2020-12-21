@@ -96,7 +96,7 @@ The GSFE curve is just one curve taken from the GSFE surface, also known as the 
 
 - Yanqing Su, Shuozhi Xu, Irene J. Beyerlein, [Density functional theory calculations of generalized stacking fault energy surfaces for eight face-centered cubic transition metals](http://dx.doi.org/10.1063/1.5115282), J. Appl. Phys. 126 (2019) 105112
 
-When you are ready to run simulations, download five files to a local directory `local_gsfe` on your local computer. The first four files can be downloaded from this Github repository, including
+When you are ready to run simulations, download five files to a local directory `local_gsfe` on your local computer. The first four files can be downloaded from this GitHub repository, including
 
 - `lmp_gsfe.batch`, which is for job submission
 - `lmp_gsfe.data`, which is the LAMMPS data file
@@ -171,7 +171,7 @@ First, to understand dislocations, I recommend these readings depending on how m
 
 Some Google Drive links above are private. To have access, [email me](mailto:shuozhixu@ucsb.edu) and let me know the email address associated with your Google Drive.
 
-When you are ready to run simulations, download four files to a local directory `local_peierls` on your local computer. The first three files can be downloaded from this Github repository, including
+When you are ready to run simulations, download four files to a local directory `local_peierls` on your local computer. The first three files can be downloaded from this GitHub repository, including
 
 - `lmp_peierls.batch`, which is for job submission
 - `lmp_peierls.data`, which is the LAMMPS data file, containing a screw dislocation on the {112} plane
@@ -207,7 +207,7 @@ How do we determine whether the dislocation moves? Usually one of the two criter
 
 Note: For a screw dislocation, it is important to check whether the dislocation moves within the _xz_ plane. In many cases, the screw dislocation immediately crosses slip to a plane that is not parallel to _xz_. For more on this topic, read [this paper](https://doi.org/10.1016/j.commatsci.2014.03.064). When this happens, the Peierls stress is not calculable. Write this down and move on to the next calculation. Sometimes the screw dislocation moves within the _xz_ plane by a certain distance, and then crosses slip. In this case, the Peierls stress is considered calculable. Note that an edge dislocation does not cross slip, so its Peierls stress should always be calculable.
 
-In the example provided in this Github repository, the dislocation moves between dump.350.load and dump.400.load. Then download dump.360.load, dump.370.load, dump.380.load, and dump.390.load from Pod to the same directory (to which all previous dump files were downloaded) on your local computer. Open any dump file again in OVITO, by File --> Load File --> select the file --> Replace selected. Again, go through the newly downloaded dump files frame by frame and identify the two frames between which the dislocation core starts to move. The two frames are dump.390.load and dump.400.load.
+In the example provided in this GitHub repository, the dislocation moves between dump.350.load and dump.400.load. Then download dump.360.load, dump.370.load, dump.380.load, and dump.390.load from Pod to the same directory (to which all previous dump files were downloaded) on your local computer. Open any dump file again in OVITO, by File --> Load File --> select the file --> Replace selected. Again, go through the newly downloaded dump files frame by frame and identify the two frames between which the dislocation core starts to move. The two frames are dump.390.load and dump.400.load.
 
 Then download dump.391.load, dump.392.load, ..., dump.399.load to the same local directory. Open any dump file, go through these new dump files and identify the two frames between which the dislocation core starts to move. The two frames are dump.393.load and dump.394.load.
 
