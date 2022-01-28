@@ -73,7 +73,7 @@ LAMMPS is an open-source software package for atomistic simulations. So you firs
 - Molecular statics (MS)
 - Monte Carlo method, e.g., [kinetic Monte Carlo](https://en.wikipedia.org/wiki/Kinetic_Monte_Carlo)
 
-To learn the basics of MD and MS, please read, respectively, Chapter 9 and Chapter 6 of [this book](https://drive.google.com/file/d/0Bxsx9iwZLpZxS0RENllIRnd2LWc/view?usp=sharing). The Google Drive link is private. To have access, [email me](mailto:shuozhixu@ucsb.edu) and let me know the email address associated with your Google Drive.
+To learn the basics of MD and MS, please read, respectively, Chapter 9 and Chapter 6 of [this book](https://drive.google.com/file/d/0Bxsx9iwZLpZxS0RENllIRnd2LWc/view?usp=sharing&resourcekey=0--hdU-45Sb2q9H8VTZo_C9Q). The Google Drive link is private, so you need to request access.
 
 And here are more references on MD:
 
