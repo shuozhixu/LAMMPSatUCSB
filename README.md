@@ -4,12 +4,10 @@ As an intern in the Beyerlein group at UC Santa Barbara, you will learn atomisti
 
 # Pod
 
-1. [Request a user account](http://csc.cnsi.ucsb.edu/acct) at the Center for Scientific Computing at UCSB.
-2. Wait for the user account to be approved --- you will receive an email.
-3. [Request an account on Pod.](http://csc.cnsi.ucsb.edu/content/pod-account)
-4. Wait for the Pod account to be approved --- you will receive an email. In what follows, I will assume that your account is `ucsb-intern` and your password is `ucsb-intern-pw`.
-5. To use Pod, these webpages may help:
-	- [HPC at UCSB](http://csc.cnsi.ucsb.edu/sites/csc.cnsi.ucsb.edu/files/docs/hpcintro_2018_0.pdf)
+1. [Request a user account](https://csc.cnsi.ucsb.edu/forms/user-account) at the Center for Scientific Computing at UCSB.
+2. Wait for the user account to be approved --- you will receive an email. In what follows, I will assume that your account is `ucsb-intern` and your password is `ucsb-intern-pw`.
+3. To use Pod, these webpages may help:
+	- [HPC at UCSB](https://csc.cnsi.ucsb.edu/docs/getting-started-0)
 	- [Pod](http://csc.cnsi.ucsb.edu/docs/pod-cluster)
 	- [SLURM](https://slurm.schedmd.com/quickstart.html)
 	- [SLURM at UCSB](https://csc.cnsi.ucsb.edu/docs/slurm-job-scheduler)
