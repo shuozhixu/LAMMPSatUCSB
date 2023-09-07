@@ -167,9 +167,7 @@ First, to understand dislocations, I recommend these readings depending on how m
 
 	- Peter M. Anderson, John P. Hirth, Jens Lothe, [Theory of Dislocations](https://www.amazon.com/Theory-Dislocations-Peter-M-Anderson/dp/0521864364), 3rd edition, 2017
 
-Some Google Drive links above are private. You may request access.
-
-To learn all kinds of defects in crystals, read [the website by Föll](https://www.tf.uni-kiel.de/matwis/amat/def_en/index.html) and/or [the book by Cai and Nix](https://www.cambridge.org/highereducation/books/imperfections-in-crystalline-solids/3A193C8DEF36073F9E2EF07EEA6A5D96#overview).
+Some Google Drive links above are private. You may request access. To learn all kinds of defects in crystals, read [the website by Föll](https://www.tf.uni-kiel.de/matwis/amat/def_en/index.html) and/or [the book by Cai and Nix](https://www.cambridge.org/highereducation/books/imperfections-in-crystalline-solids/3A193C8DEF36073F9E2EF07EEA6A5D96#overview).
 
 When you are ready to run simulations, download four files to a local directory `local_peierls` on your local computer. The first three files can be downloaded from this GitHub repository, including
 
