@@ -1,6 +1,12 @@
+# Preamble
+
+This GitHub repository was created when I was [a postdoc at UC Santa Barbara](https://labs.me.ucsb.edu/beyerlein/irene/members/xu). Thus, it may not be update-to-date.
+
+Based on this repository, my Ph.D. student [Anshu Raj](https://scholar.google.com/citations?user=3SNS6QsAAAAJ&hl=en) and I have created another GitHub repository named [LAMMPSatOU](https://github.com/ANSHURAJ11/LAMMPSatOU), providing guide on running LAMMPS simulations on University of Oklahoma supercomputer, [OSCER](https://www.ou.edu/oscer).
+
 # Introduction
 
-As an intern in the Beyerlein group at UC Santa Barbara, you will learn atomistic simulations via LAMMPS on a UCSB cluster named Pod.
+As a student in the Beyerlein group at UC Santa Barbara, you will learn atomistic simulations via LAMMPS on a UCSB cluster named Pod.
 
 # Pod
 
@@ -79,7 +85,7 @@ And here are more references on MD:
 - [Basic Molecular Dynamics](http://li.mit.edu/Archive/Papers/05/Li05-2.8.pdf)
 - [A Molecular Dynamics Primer](http://cms.sjtu.edu.cn/doc/reading/md/A_Molecular_Dynamics_Primer_(Ercolessi).pdf)
 
-To learn LAMMPS, you may start with [this page](https://lammps.sandia.gov/tutorials.html) and [this page](https://icme.hpc.msstate.edu/mediawiki/index.php/LAMMPS_tutorials).
+To learn LAMMPS, you may start with [this page](https://lammps.sandia.gov/tutorials.html) and [this page](https://icme.hpc.msstate.edu/mediawiki/index.php/LAMMPS_tutorials.html).
 
 Note: LAMMPS is installed on Pod, so you don't need to install it yourself.
 
